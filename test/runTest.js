@@ -8,10 +8,12 @@ async function main() {
     // The following will hang the test.
     const extensionTestsPath = resolve(import.meta.dirname, 'runner.cjs');
 
-    // The following will NOT hang the test.
-    // const extensionTestsPath = resolve(import.meta.dirname, 'runner.js');
-
-    await runTests({ extensionDevelopmentPath, extensionTestsPath });
+    await runTests({
+      extensionDevelopmentPath,
+      extensionTestsPath,
+      launchArgs: ['--disable-extensions'],
+      // vscodeExecutablePath: '/Users/mizdra/src/github.com/microsoft/vscode/scripts/code.sh',
+    });
   } catch (err) {
     console.error(err);
     console.error('Failed to run tests');
